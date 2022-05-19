@@ -1,0 +1,8 @@
+{
+  "name": "utils",
+  "version": "1.0.0",
+  "dependencies": {},
+  "devDependencies": {
+    "moment": "^2.29.3"
+  }
+}
