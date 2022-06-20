@@ -21,21 +21,21 @@ export default {
     },
 
     //获取当前月往前
-    getOldTimes() {
+    getOldTimes(num) {
         const data = [];
-        for (let i = 0; i < 6; i++) {
+        for (let i = 0; i < num; i++) {
             data.push(moment().subtract(i, "M").format('YYYY-MM'))
         }
         return data;
     },
 
     // 获取往后月份，季度
-    getNewTimes() {
+    getNewTimes(num) {
         /*
         * 三个季度
         * */
         const data = [];
-        for (let i = 0; i < 3; i++) {
+        for (let i = 0; i < num; i++) {
             // 季度
             data.push(moment().add(i, 'Q').format('YYYY-0Q'));
             if (i === 0) {
@@ -47,9 +47,7 @@ export default {
                         }
                         break;
                     case 2:
-                        for (let j = 1; j < 2; j++) {
-                            data.push(moment().add(j, "M").format('YYYY-MM-DD'))
-                        }
+                        data.push(moment().add(j, "M").format('YYYY-MM-DD'))
                         break;
                     default:
                         for (let j = 0; j < 3; j++) {
