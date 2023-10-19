@@ -80,7 +80,55 @@ export default {
         blobData.name = blobName;
         return blobData;
 
-    }
+    },
+
+    /*
+       * 方法作用：【取传入日期是星期几】
+       * 使用方法：dateUtil.nowFewWeeks(new Date());
+       * @param date{date} 传入日期类型
+       * @returns {星期四，...}
+       */
+    nowFewWeeks(date) {
+        if (date instanceof Date) {
+            const dayNames = ["星期天", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
+            return dayNames[date.getDay()];
+        } else {
+            return "Param error,date type!";
+        }
+    },
+
+    /*
+        * 方法作用：【字符串转换成日期】
+        * 使用方法：dateUtil.strTurnDate("2010-01-01");
+        * @param str {String}字符串格式的日期，传入格式：yyyy-mm-dd(2015-01-31)
+        * @return {Date}由字符串转换成的日期
+        */
+    strTurnDate(str) {
+        const re = /^(\d{4})\S(\d{1,2})\S(\d{1,2})$/;
+        let dt;
+        if (re.test(str)) {
+            dt = new Date(RegExp.$1, RegExp.$2 - 1, RegExp.$3);
+        }
+        return dt;
+    },
+
+
+    /*
+     * 方法作用：【计算2个日期之间的天数】
+     * 传入格式：yyyy-mm-dd(2015-01-31)
+     * 使用方法：dateUtil.dayMinus(startDate,endDate);
+     * @startDate {Date}起始日期
+     * @endDate {Date}结束日期
+     * @return endDate - startDate的天数差
+     */
+    dayMinus(startDate, endDate) {
+        if (startDate instanceof Date && endDate instanceof Date) {
+            return Math.floor((endDate - startDate) / (1000 * 60 * 60 * 24));
+        } else {
+            return "Param error,date type!";
+        }
+    },
+
 
 }
 
